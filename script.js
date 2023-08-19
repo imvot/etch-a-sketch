@@ -1,5 +1,7 @@
-const grid = document.querySelector("#grid");
 const GRID_SIZE = 960;
+const grid = document.querySelector("#grid");
+const btn = document.querySelector("#prompt-btn")
+btn.addEventListener("click", () => generateGrid(getUserGridSize()));
 
 function generateSquares(nbSquares, squareSize) {
     for(let i=0; i<nbSquares; i++) {
@@ -14,7 +16,6 @@ function generateSquares(nbSquares, squareSize) {
 }
 
 function generateGrid(nbSideSquares) {
-    nbSideSquares = nbSideSquares > 100 ? 100 : nbSideSquares
     removeChilds(grid)
     const squareSize = GRID_SIZE / nbSideSquares
     generateSquares(nbSideSquares**2, squareSize)
@@ -24,6 +25,11 @@ function removeChilds(element) {
     while(element.firstChild) {
         element.removeChild(element.firstChild);
     }
+}
+
+function getUserGridSize() {
+    const answer = prompt("Grid Side Size");
+    return +answer > 100 ? 100 : +answer
 }
 
 generateGrid(16)
