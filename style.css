@@ -1,0 +1,16 @@
+* {
+    box-sizing: border-box;
+}
+
+#grid {
+    display: flex;
+    flex-wrap: wrap;
+    width: 960px;
+}
+
+.square {
+    flex: 1 0 auto;
+    width: 60px;
+    height: 60px;
+    border: 1px solid;
+}
