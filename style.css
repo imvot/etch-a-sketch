@@ -12,9 +12,4 @@
     flex: 1 0 auto;
     border: 1px solid;
     background-color: white;
-    transition-duration: 5s;
-}
-
-.square:hover {
-    transition-duration: 0ms;
 }
