@@ -9,8 +9,7 @@ function generateSquares(nbSquares, squareSize) {
         square.classList.add("square");
         square.style.width = `${squareSize}px`;
         square.style.height = `${squareSize}px`;
-        square.addEventListener("mouseover", event => event.target.style.backgroundColor = getRandomRGB());
-        square.addEventListener("mouseout", event => event.target.style.backgroundColor = "white");
+        square.addEventListener("mouseover", event => event.target.style.backgroundColor = getDarkenColor(getComputedStyle(event.target).backgroundColor));
         grid.appendChild(square);
     }
 }
@@ -32,8 +31,19 @@ function getUserGridSize() {
     return +answer > 100 ? 100 : +answer
 }
 
-function getRandomRGB() {
-    return `rgb(${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)}, ${Math.floor(Math.random() * 255)})`;
+function rgbStringToArray(rgbString) {
+    return rgbString
+        .slice(4, -1)
+        .split(",")
+        .map(color => +color);
+}
+
+function getDarkenColor(rgbString) {
+    let [red, blue, green] = rgbStringToArray(rgbString);
+    red -= red - 25.5 < 0 ? 0 : 25.5;
+    blue -= blue - 25.5 < 0 ? 0 : 25.5;
+    green -= green - 25.5 < 0 ? 0 : 25.5;
+    return `rgb(${red}, ${blue}, ${green})`;
 }
 
 generateGrid(16)
